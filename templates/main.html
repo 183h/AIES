@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='bootstrap.min.css') }}">
+  <script type="text/javascript" src="{{url_for('static', filename='canvasjs.min.js')}}"></script>
+</head>
+<script type="text/javascript">
+</script>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6" style="background-color:lavender;">
+      <div id="humidity" style="height: 350px; width: 100%;"></div>
+    </div>
+    <div class="col-sm-6" style="background-color:lavenderblush;">
+      <div id="temperature" style="height: 350px; width: 100%;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6" style="background-color:lavenderblush;">
+    </div>
+    <div class="col-sm-6" style="background-color:lavender;">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
