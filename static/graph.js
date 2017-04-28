@@ -1,4 +1,4 @@
-function drawGraph(titleName, container) {
+function drawGraph(titleName, container, unit) {
   var dataPoints = [];
 
   var chart = new CanvasJS.Chart(container,{
@@ -19,7 +19,7 @@ function drawGraph(titleName, container) {
     },
     axisY:{
       title: "Value",
-      suffix: " %",
+      suffix: " " + unit,
       includeZero: false
     },
     data: [{
