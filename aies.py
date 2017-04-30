@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify
 from random import randint
+from serial import Serial
+from subprocess import check_output
 app = Flask(__name__)
 
 @app.route('/')
@@ -28,6 +30,10 @@ def getHumTest():
 @app.route('/getTemp')
 def getTemp():
 	try:
+		command='get_temp'
+		s.write(command.encode())
+		temp = s.readline().decode('ascii').strip()
+		return jsonify(temp)
 		pass
 	except Exception, e:
 		return(str(e))
@@ -35,9 +41,15 @@ def getTemp():
 @app.route('/getHum')
 def getHum():
 	try:
+		command='get_hum'
+		s.write(command.encode())
+		hum = s.readline().decode('ascii').strip()
+		return jsonify(hum)
 		pass
 	except Exception, e:
 		return(str(e))
 
 if __name__ == "__main__":
-    app.run()
+	device = check_output("ls /dev | grep ttyUSB")
+	s = Serial('/dev/' + device, 9600)
+	app.run()
