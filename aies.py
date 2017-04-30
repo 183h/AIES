@@ -34,7 +34,7 @@ def getTemp():
 		command='get_temp'
 		s.write(command.encode())
 		temp = s.readline().decode('ascii').strip()
-		return jsonify(data=temp)
+		return jsonify(data=float(temp))
 	except Exception, e:
 		return(str(e))
 
@@ -44,7 +44,7 @@ def getHum():
 		command='get_hum'
 		s.write(command.encode())
 		hum = s.readline().decode('ascii').strip()
-		return jsonify(data=hum)
+		return jsonify(data=float(hum))
 	except Exception, e:
 		return(str(e))
 
