@@ -60,6 +60,7 @@ function apiCall(apiMethod){
     url: urlRoot + apiMethod,
     async: false,
     success: function(result){
+        console.log(result)
         apiCallResult = result;
     }
   });
