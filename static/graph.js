@@ -61,7 +61,7 @@ function apiCall(apiMethod){
     async: false,
     success: function(result){
         console.log(result)
-        apiCallResult = result;
+        apiCallResult = result.data;
     }
   });
 

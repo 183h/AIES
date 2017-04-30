@@ -16,7 +16,7 @@ def main():
 def getTempTest():
     try:
         temp = randint(1, 100)
-        return jsonify(temp)
+        return jsonify(data=temp)
     except Exception, e:
         return(str(e))
 
@@ -24,7 +24,7 @@ def getTempTest():
 def getHumTest():
     try:
         hum = randint(1, 100)
-        return jsonify(hum)
+        return jsonify(data=hum)
     except Exception, e:
         return(str(e))
 
@@ -34,8 +34,7 @@ def getTemp():
 		command='get_temp'
 		s.write(command.encode())
 		temp = s.readline().decode('ascii').strip()
-		return jsonify(temp)
-		pass
+		return jsonify(data=temp)
 	except Exception, e:
 		return(str(e))
 
@@ -45,8 +44,7 @@ def getHum():
 		command='get_hum'
 		s.write(command.encode())
 		hum = s.readline().decode('ascii').strip()
-		return jsonify(hum)
-		pass
+		return jsonify(data=hum)
 	except Exception, e:
 		return(str(e))
 
