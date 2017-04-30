@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
 from random import randint
 from serial import Serial
-from subprocess import check_output
+from subprocess import getoutput
 app = Flask(__name__)
 
 @app.route('/')
@@ -50,6 +50,6 @@ def getHum():
 		return(str(e))
 
 if __name__ == "__main__":
-	device = check_output("ls /dev | grep ttyUSB")
+	device = getoutput("ls /dev | grep ttyUSB")
 	s = Serial('/dev/' + device, 9600)
 	app.run()
