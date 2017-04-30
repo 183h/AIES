@@ -8,7 +8,7 @@ app = Flask(__name__)
 def main():
 	try:
 		return render_template("main.html")
-	except Exception, e:
+	except Exception as e:
 		return(str(e))
 
 @app.route('/getTempTest')
@@ -16,7 +16,7 @@ def getTempTest():
     try:
         temp = randint(1, 100)
         return jsonify(temp)
-    except Exception, e:
+    except Exception as e:
         return(str(e))
 
 @app.route('/getHumTest')
@@ -24,7 +24,7 @@ def getHumTest():
     try:
         hum = randint(1, 100)
         return jsonify(hum)
-    except Exception, e:
+    except Exception as e:
         return(str(e))
 
 @app.route('/getTemp')
@@ -35,7 +35,7 @@ def getTemp():
 		temp = s.readline().decode('ascii').strip()
 		return jsonify(temp)
 		pass
-	except Exception, e:
+	except Exception as e:
 		return(str(e))
 
 @app.route('/getHum')
@@ -46,7 +46,7 @@ def getHum():
 		hum = s.readline().decode('ascii').strip()
 		return jsonify(hum)
 		pass
-	except Exception, e:
+	except Exception as e:
 		return(str(e))
 
 if __name__ == "__main__":
