@@ -10,19 +10,23 @@
 </head>
 <script type="text/javascript">
 window.onload = function () {
-  drawGraph("Humidity", "humidity", "%", "getHum");
-  drawGraph("Temperature", "temperature", "°C", "getTemp");
+  drawGraph("Humidity", "humidity", "%", "getHumTest");
+  drawGraph("Temperature", "temperature", "°C", "getTempTest");
 }
 </script>
 <body>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6" style="background-color:lavender;">
-      <div id="humidity" style="height: 350px; width: 100%;"></div>
+    <div class="col-sm-6" style="padding-top: 15px">
+      <div class="well">
+        <div id="humidity" style="height: 350px; width: 100%;"></div>
+      </div>
     </div>
-    <div class="col-sm-6" style="background-color:lavenderblush;">
-      <div id="temperature" style="height: 350px; width: 100%;"></div>
+    <div class="col-sm-6" style="padding-top: 15px">
+      <div class="well">
+        <div id="temperature" style="height: 350px; width: 100%;"></div>
+      </div>
     </div>
   </div>
   <div class="row">
