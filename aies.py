@@ -40,7 +40,7 @@ def getRainTest():
 @app.route('/getValveStatusTest')
 def getValveStatusTest():
 	try:
-		status = 0
+		status = 1
 		return jsonify(data=(status, valveStates[status]))
 	except Exception, e:
 		return(str(e))
@@ -88,8 +88,6 @@ def getValveStatus():
 prod = "prod" if argv[1] == "prod" else "test"
 weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
 valveStates = {0: "OFF", 1: "ON"}
-initialValveStatus = (getValveStatus() if prod == "prod"
-                                       else getValveStatusTest())
 
 if __name__ == "__main__":
 	if prod == "prod":
