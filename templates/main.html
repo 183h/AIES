@@ -14,10 +14,12 @@
 var apiTemp = {"prod": "getTemp","test": "getTempTest"};
 var apiHum = {"prod": "getHum","test": "getHumTest"};
 var apiRain = {"prod": "getRain","test": "getRainTest"};
+var apiValve = {"prod": "getValveStatus","test": "getValveStatusTest"};
 
 window.onload = function () {
   drawGraph("Humidity", "humidity", "%", apiHum["{{prod}}"]);
   drawGraph("Temperature", "temperature", "°C", apiTemp["{{prod}}"]);
+  setInitialValveState(apiValve["{{prod}}"]);
 
   setInterval(function(){ getRainStatus(apiRain["{{prod}}"]); }, 5000);
 }
@@ -46,9 +48,8 @@ window.onload = function () {
           </p>
           <b>Make your choice :</b>
             <div class="btn-group">
-              <!-- <p><b>Valve status:</b></p> -->
-              <button type="button" class="btn btn-success" style="pointer-events: none;"></button>
-              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button id="buttonValve" type="button" class="btn btn-danger" style="pointer-events: none;"></button>
+              <button id="dropdownValve" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
               </button>

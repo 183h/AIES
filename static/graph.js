@@ -59,9 +59,24 @@ var rainStatusIcons = {"Rain": "wi wi-rain",
 function getRainStatus(rainStatusApi){
   var status = null;
   status = apiCall(rainStatusApi, false);
-  console.log("status", status.data);
+  console.log("statusRain", status);
   $("#rainStatus").text(status.data);
   $("#rainStatusIcon").attr("class", rainStatusIcons[status.data]);
+}
+
+function setInitialValveState(valveStatusApi){
+  var valveStatus = null;
+  valveStatus = apiCall(valveStatusApi, false);
+  console.log("statusValve", valveStatus);
+  if (valveStatus.data[0] == 0){
+    $("#buttonValve").attr("class", "btn btn-danger");
+    $("#buttonValve").text(valveStatus.data[1]);
+    $("#dropdownValve").attr("class", "btn btn-danger dropdown-toggle");
+  }else if (valveStatus.data[0] == 1) {
+    $("#buttonValve").attr("class", "btn btn-success");
+    $("#buttonValve").text(valveStatus.data[1]);
+    $("#dropdownValve").attr("class", "btn btn-success dropdown-toggle");
+  }
 }
 
 urlRoot = "http://127.0.0.1:5000/"
