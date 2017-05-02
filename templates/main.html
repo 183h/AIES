@@ -8,6 +8,7 @@
   <script type="text/javascript" src="{{url_for('static', filename='canvasjs.min.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='graph.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='jquery-3.2.1.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
 </head>
 <script type="text/javascript">
 var apiTemp = {"prod": "getTemp","test": "getTempTest"};
@@ -40,9 +41,23 @@ window.onload = function () {
     <div class="col-sm-6" style="">
       <div class="well" style="margin-bottom: 15px">
         <div id="controls" style="height: 320px; width: 100%;">
-          <p><b>Stav počasia:</b>
+          <p><b>Weather status:</b>
             <span id="rainStatus"></span>&nbsp&nbsp<i id="rainStatusIcon" class=""></i>
           </p>
+          <b>Make your choice :</b>
+            <div class="btn-group">
+              <!-- <p><b>Valve status:</b></p> -->
+              <button type="button" class="btn btn-success" style="pointer-events: none;"></button>
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Turn on</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Turn of</a></li>
+              </ul>
+            </div>
         </div>
       </div>
     </div>
