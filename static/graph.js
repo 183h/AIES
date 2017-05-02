@@ -81,6 +81,15 @@ function setInitialValveState(valveStatusApi){
 
 function turnValve(status){
   apiCall("setValve/"+status, false)
+  if (status == "off"){
+    $("#buttonValve").attr("class", "btn btn-danger");
+    $("#buttonValve").text("OFF");
+    $("#dropdownValve").attr("class", "btn btn-danger dropdown-toggle");
+  }else if (status == "on") {
+    $("#buttonValve").attr("class", "btn btn-success");
+    $("#buttonValve").text("ON");
+    $("#dropdownValve").attr("class", "btn btn-success dropdown-toggle");
+  }
 }
 
 urlRoot = "http://127.0.0.1:5000/";
