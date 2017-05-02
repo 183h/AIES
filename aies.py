@@ -3,12 +3,16 @@ from random import randint
 from serial import Serial
 from subprocess import check_output
 from re import findall
+from sys import argv
 app = Flask(__name__)
+
+weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
+prod = "prod" if argv[1] == "prod" else "test"
 
 @app.route('/')
 def main():
 	try:
-		return render_template("main.html")
+		return render_template("main.html", prod=prod)
 	except Exception, e:
 		return(str(e))
 
@@ -27,6 +31,14 @@ def getHumTest():
         return jsonify(data=hum)
     except Exception, e:
         return(str(e))
+
+@app.route('/getRainTest')
+def getRainTest():
+	try:
+		rain = randint(0, 2)
+		return jsonify(data=weatherState[rain])
+	except Exception, e:
+		return(str(e))
 
 @app.route('/getTemp')
 def getTemp():
@@ -48,7 +60,18 @@ def getHum():
 	except Exception, e:
 		return(str(e))
 
+@app.route('/getRain')
+def getRain():
+	try:
+		command=''
+		s.write(command.encode())
+		rain = s.readline().decode('ascii').strip()
+		return jsonify(data=weatherState[rain])
+	except Exception, e:
+		return(str(e))
+
 if __name__ == "__main__":
-	device = findall('ttyUSB[0-9]*', check_output(["ls","/dev"]))[0]
-	s = Serial('/dev/' + device, 9600)
+	if prod == "prod":
+	    device = findall('ttyUSB[0-9]*', check_output(["ls","/dev"]))[0]
+	    s = Serial('/dev/' + device, 9600)
 	app.run()

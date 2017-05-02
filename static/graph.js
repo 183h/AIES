@@ -38,11 +38,11 @@ function drawGraph(titleName, container, unit, apiMethod) {
     time.setTime(time.getTime()+ updateInterval);
     // var deltaY1 = .5 + Math.random() *(-.5-.5);
     // yValue1 = Math.round((yValue1 + deltaY1)*100)/100;
-    yValue1 = apiCall(apiMethod);
+    yValue1 = apiCall(apiMethod, false);
 
     dataPoints.push({
       x: time.getTime(),
-      y: yValue1
+      y: yValue1.data
     });
 
     chart.render();
@@ -52,16 +52,28 @@ function drawGraph(titleName, container, unit, apiMethod) {
   setInterval(function(){updateChart()}, updateInterval);
 }
 
+var rainStatusIcons = {"Rain": "wi wi-rain",
+                       "High humidity / Light rain": "wi wi-humidity",
+                       "Drought": "wi wi-day-sunny"};
+
+function getRainStatus(rainStatusApi){
+  var status = null;
+  status = apiCall(rainStatusApi, false);
+  console.log("status", status.data);
+  $("#rainStatus").text(status.data);
+  $("#rainStatusIcon").attr("class", rainStatusIcons[status.data]);
+}
+
 urlRoot = "http://127.0.0.1:5000/"
 
-function apiCall(apiMethod){
+function apiCall(apiMethod, asyncType){
   var apiCallResult = null;
   $.ajax({
     url: urlRoot + apiMethod,
-    async: false,
+    async: asyncType,
     success: function(result){
         console.log(result)
-        apiCallResult = result.data;
+        apiCallResult = result;
     }
   });
 
