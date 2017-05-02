@@ -30,7 +30,7 @@ function drawGraph(titleName, container, unit, apiMethod) {
     }],
   });
 
-  var updateInterval = 2000;
+  var updateInterval = 5000;
   var yValue1 = 0;
   var time = new Date;
 

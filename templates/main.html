@@ -17,11 +17,16 @@ var apiRain = {"prod": "getRain","test": "getRainTest"};
 var apiValve = {"prod": "getValveStatus","test": "getValveStatusTest"};
 
 window.onload = function () {
-  drawGraph("Humidity", "humidity", "%", apiHum["{{prod}}"]);
-  drawGraph("Temperature", "temperature", "°C", apiTemp["{{prod}}"]);
   setInitialValveState(apiValve["{{prod}}"]);
 
-  setInterval(function(){ getRainStatus(apiRain["{{prod}}"]); }, 5000);
+  setTimeout(function(){
+      drawGraph("Humidity", "humidity", "%", apiHum["{{prod}}"]);
+      drawGraph("Temperature", "temperature", "°C", apiTemp["{{prod}}"]);
+    },
+    5000
+  );
+
+  setInterval(function(){ getRainStatus(apiRain["{{prod}}"]); }, 10000);
 }
 </script>
 <body>
