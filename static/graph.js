@@ -87,7 +87,6 @@ function apiCall(apiMethod, asyncType){
     url: urlRoot + apiMethod,
     async: asyncType,
     success: function(result){
-        console.log(result)
         apiCallResult = result;
     }
   });
