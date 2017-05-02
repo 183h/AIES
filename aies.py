@@ -6,9 +6,6 @@ from re import findall
 from sys import argv
 app = Flask(__name__)
 
-weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
-prod = "prod" if argv[1] == "prod" else "test"
-
 @app.route('/')
 def main():
 	try:
@@ -37,6 +34,14 @@ def getRainTest():
 	try:
 		rain = randint(0, 2)
 		return jsonify(data=weatherState[rain])
+	except Exception, e:
+		return(str(e))
+
+@app.route('/getValveStatusTest')
+def getValveStatusTest():
+	try:
+		status = 0
+		return jsonify(data=(status, valveStates[status]))
 	except Exception, e:
 		return(str(e))
 
@@ -69,6 +74,22 @@ def getRain():
 		return jsonify(data=weatherState[int(rain)])
 	except Exception, e:
 		return(str(e))
+
+@app.route('/getValveStatus')
+def getValveStatus():
+	try:
+		command='is_on'
+		s.write(command.encode())
+		status = s.readline().decode('ascii').strip()
+		return jsonify(data=valveStates[int(status)])
+	except Exception, e:
+		return(str(e))
+
+prod = "prod" if argv[1] == "prod" else "test"
+weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
+valveStates = {0: "OFF", 1: "ON"}
+initialValveStatus = (getValveStatus() if prod == "prod"
+                                       else getValveStatusTest())
 
 if __name__ == "__main__":
 	if prod == "prod":
