@@ -63,7 +63,7 @@ def getHum():
 @app.route('/getRain')
 def getRain():
 	try:
-		command=''
+		command='get_rain'
 		s.write(command.encode())
 		rain = s.readline().decode('ascii').strip()
 		return jsonify(data=weatherState[rain])
