@@ -85,9 +85,20 @@ def getValveStatus():
 	except Exception, e:
 		return(str(e))
 
+@app.route('/setValve/<status>')
+def setValve(status):
+	try:
+		command=valveCommands[status]
+		s.write(command.encode())
+		status = s.readline().decode('ascii').strip()
+		return jsonify(data=(int(status), valveStates[int(status)]))
+	except Exception, e:
+		return(str(e))
+
 prod = "prod" if argv[1] == "prod" else "test"
 weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
 valveStates = {0: "OFF", 1: "ON"}
+valveCommands = {"on": "valve_on", "off": "valve_off"}
 
 if __name__ == "__main__":
 	if prod == "prod":

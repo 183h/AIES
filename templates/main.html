@@ -59,9 +59,9 @@ window.onload = function () {
                 <span class="sr-only">Toggle Dropdown</span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="#">Turn on</a></li>
+                <li><a id="turnOnButton" onclick="turnValve('on')">Turn on</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Turn of</a></li>
+                <li><a id="turnOffButton" onclick="turnValve('off')">Turn off</a></li>
               </ul>
             </div>
         </div>
