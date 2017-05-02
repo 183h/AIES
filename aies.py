@@ -66,7 +66,7 @@ def getRain():
 		command='get_rain'
 		s.write(command.encode())
 		rain = s.readline().decode('ascii').strip()
-		return jsonify(data=weatherState[rain])
+		return jsonify(data=weatherState[int(rain)])
 	except Exception, e:
 		return(str(e))
 
