@@ -81,7 +81,7 @@ def getValveStatus():
 		command='is_on'
 		s.write(command.encode())
 		status = s.readline().decode('ascii').strip()
-		return jsonify(data=data=(int(status), valveStates[int(status)]))
+		return jsonify(data=(int(status), valveStates[int(status)]))
 	except Exception, e:
 		return(str(e))
 
