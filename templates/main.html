@@ -17,7 +17,7 @@ var apiRain = {"prod": "getRain","test": "getRainTest"};
 var apiValve = {"prod": "getValveStatus","test": "getValveStatusTest"};
 
 window.onload = function () {
-  setInitialValveState(apiValve["{{prod}}"]);
+  // setInitialValveState(apiValve["{{prod}}"]);
   updateCronTable();
 
   setTimeout(function(){
@@ -53,24 +53,67 @@ window.onload = function () {
             <span id="rainStatus"></span>&nbsp&nbsp<i id="rainStatusIcon" class=""></i>
           </p>
           <b>Valve status:</b>
-            <div class="btn-group">
-              <button id="buttonValve" type="button" class="btn btn-danger" style="pointer-events: none;"></button>
-              <button id="dropdownValve" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a id="turnOnButton" onclick="turnValve('on')">Turn on</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a id="turnOffButton" onclick="turnValve('off')">Turn off</a></li>
-              </ul>
-            </div>
+          <div class="btn-group">
+            <button id="buttonValve" type="button" class="btn btn-danger" style="pointer-events: none;">OFF</button>
+            <button id="dropdownValve" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a id="turnOnButton" onclick="turnValve('on')">Turn on</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a id="turnOffButton" onclick="turnValve('off')">Turn off</a></li>
+            </ul>
+          </div>
+          <div class="well" style="margin-top: 10px">
+            <b>Automated irrigation job creation</b>
+            <form id="cronForm">
+              <div class="form-group">
+                  <b>Choose days:&nbsp</b>
+                  <label class="checkbox-inline"><input id="dow1" type="checkbox" name="dow" value="MON">MON</label>
+                  <label class="checkbox-inline"><input id="dow2" type="checkbox" name="dow" value="TUE">TUE</label>
+                  <label class="checkbox-inline"><input id="dow3" type="checkbox" name="dow" value="WED">WED</label>
+                  <label class="checkbox-inline"><input id="dow4" type="checkbox" name="dow" value="THU">THU</label>
+                  <label class="checkbox-inline"><input id="dow5" type="checkbox" name="dow" value="FRI">FRI</label>
+                  <label class="checkbox-inline"><input id="dow6" type="checkbox" name="dow" value="SAT">SAT</label>
+                  <label class="checkbox-inline"><input id="dow7" type="checkbox" name="dow" value="SUN">SUN</label>
+              </div>
+              <b>Choose hours:&nbsp</b>
+              <div class="form-group">
+                  &nbsp&nbsp<label class="checkbox-inline"><input id="h0" type="checkbox" name="hour0" value="0">00:00</label>
+                  <label class="checkbox-inline"><input id="h1" type="checkbox" name="hour" value="1">01:00</label>
+                  <label class="checkbox-inline"><input id="h2" type="checkbox" name="hour" value="2">02:00</label>
+                  <label class="checkbox-inline"><input id="h3" type="checkbox" name="hour" value="3">03:00</label>
+                  <label class="checkbox-inline"><input id="h4" type="checkbox" name="hour" value="4">04:00</label>
+                  <label class="checkbox-inline"><input id="h5" type="checkbox" name="hour" value="5">05:00</label>
+                  <label class="checkbox-inline"><input id="h6" type="checkbox" name="hour" value="6">06:00</label>
+                  <label class="checkbox-inline"><input id="h7" type="checkbox" name="hour" value="7">07:00</label>
+                  <label class="checkbox-inline"><input id="h8" type="checkbox" name="hour" value="8">08:00</label>
+                  <label class="checkbox-inline"><input id="h9" type="checkbox" name="hour" value="9">09:00</label>
+                  <label class="checkbox-inline"><input id="h10" type="checkbox" name="hour" value="10">10:00</label>
+                  <label class="checkbox-inline"><input id="h11" type="checkbox" name="hour" value="11">11:00</label>
+                  <label class="checkbox-inline"><input id="h12" type="checkbox" name="hour" value="12">12:00</label>
+                  <label class="checkbox-inline"><input id="h13" type="checkbox" name="hour" value="13">13:00</label>
+                  <label class="checkbox-inline"><input id="h14" type="checkbox" name="hour" value="14">14:00</label>
+                  <label class="checkbox-inline"><input id="h15" type="checkbox" name="hour" value="15">15:00</label>
+                  <label class="checkbox-inline"><input id="h16" type="checkbox" name="hour" value="16">16:00</label>
+                  <label class="checkbox-inline"><input id="h17" type="checkbox" name="hour" value="17">17:00</label>
+                  <label class="checkbox-inline"><input id="h18" type="checkbox" name="hour" value="18">18:00</label>
+                  <label class="checkbox-inline"><input id="h19" type="checkbox" name="hour" value="19">19:00</label>
+                  <label class="checkbox-inline"><input id="h20" type="checkbox" name="hour" value="20">20:00</label>
+                  <label class="checkbox-inline"><input id="h21" type="checkbox" name="hour" value="21">21:00</label>
+                  <label class="checkbox-inline"><input id="h22" type="checkbox" name="hour" value="22">22:00</label>
+                  <label class="checkbox-inline"><input id="h23" type="checkbox" name="hour" value="23">23:00</label>
+              </div>
+              <button id="addCronButton" class="btn btn-default" type="button" onclick="addCron()">Add job</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-sm-6" style="">
       <div class="well" style="margin-bottom: 15px">
-        <b>Automated irrigation</b>
+        <b>Automated irrigation jobs</b>
         <div id="crons" class="continer" style="height: 299.5px; width: 100%;"></div>
       </div>
     </div>

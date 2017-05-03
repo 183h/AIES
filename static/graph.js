@@ -49,7 +49,7 @@ function drawGraph(titleName, container, unit, apiMethod) {
   };
 
   updateChart(100);
-  setInterval(function(){updateChart()}, updateInterval);
+  // setInterval(function(){updateChart()}, updateInterval);
 }
 
 var rainStatusIcons = {"Rain": "wi wi-rain",
@@ -96,6 +96,33 @@ function updateCronTable(){
 }
 
 urlRoot = "http://127.0.0.1:5000/";
+
+function addCron(){
+  checkedDays = $("input[type=checkbox][name*='dow']:checked").length;
+  if(!checkedDays) {
+    alert("You must check at least one day!");
+    return false;
+  }
+  checkedHours = $("input[type=checkbox][name*='hour']:checked").length;
+  if(!checkedHours) {
+    alert("You must check at least one hour!");
+    return false;
+  }
+
+  $.ajax({
+    url: urlRoot + 'addCron',
+    data: $('#cronForm').serialize(),
+    type: 'POST',
+    success: function(response) {
+      $('input[type=checkbox]').prop('checked', false);
+      $('#addCronButton').blur();
+      updateCronTable();
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
 
 function apiCall(apiMethod, asyncType){
   var apiCallResult = null;

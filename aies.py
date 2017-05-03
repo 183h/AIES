@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from random import randint
 from serial import Serial
 from subprocess import check_output
@@ -106,10 +106,19 @@ def cronTable():
 	except Exception, e:
 		return(str(e))
 
-@app.route('/addCron')
+@app.route('/addCron', methods=['POST'])
 def addCron():
 	try:
-		pass
+		hour = request.form.getlist('hour')
+		dow = request.form.getlist('dow')
+		job = userCronTab.new(command='xxx',user=cronUser)
+		for h in hour:
+			job.hour.also.on(h)
+		for d in dow:
+			job.dow.also.on(d)
+		job.enable()
+		userCronTab.write()
+		return jsonify(data=true)
 	except Exception, e:
 		return(str(e))
 
