@@ -111,7 +111,7 @@ def addCron():
 	try:
 		hour = request.form.getlist('hour')
 		dow = request.form.getlist('dow')
-		job = userCronTab.new(command='xxx',user=cronUser)
+		job = userCronTab.new(command='/usr/bin/python /home/pi/AIES/irrigationCron.py',user=cronUser)
 		for h in hour:
 			job.hour.also.on(h)
 		for d in dow:
