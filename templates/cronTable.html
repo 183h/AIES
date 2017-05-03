@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Day</th>
+        <th>Hour</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cron in cronList %}
+      <tr>
+        <td>{{cron.name}}</td>
+        <td>{{cron.day}}</td>
+        <td>{{cron.hour}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
