@@ -122,6 +122,17 @@ def addCron():
 	except Exception, e:
 		return(str(e))
 
+@app.route('/deleteCron/<id>')
+def deleteCron(id):
+	try:
+		for idJob,job in enumerate(userCronTab):
+			if int(idJob) == int(id):
+				userCronTab.remove(job)
+				userCronTab.write()
+		return jsonify(data=true)
+	except Exception, e:
+		return(str(e))
+
 prod = "prod" if argv[1] == "prod" else "test"
 weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
 valveStates = {0: "OFF", 1: "ON"}

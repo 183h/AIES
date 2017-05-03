@@ -4,6 +4,7 @@
         <th>ID</th>
         <th>Day</th>
         <th>Hour</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
         <td>{{cron.id}}</td>
         <td>{{cron.dow}}</td>
         <td>{{cron.hour}}</td>
+        <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteCron({{cron.id}})">Delete</button></td>
       </tr>
       {% endfor %}
     </tbody>

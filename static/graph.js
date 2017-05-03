@@ -124,6 +124,11 @@ function addCron(){
   });
 }
 
+function deleteCron(id){
+  apiCall("deleteCron/"+id, true);
+  updateCronTable();
+}
+
 function apiCall(apiMethod, asyncType){
   var apiCallResult = null;
   $.ajax({
