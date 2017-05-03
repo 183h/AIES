@@ -1,6 +1,7 @@
 from serial import Serial
 from subprocess import check_output
 from time import sleep
+from re import findall
 
 device = findall('ttyUSB[0-9]*', check_output(["ls","/dev"]))[0]
 s = Serial('/dev/' + device, 9600)
