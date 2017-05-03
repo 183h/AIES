@@ -140,7 +140,7 @@ valveCommands = {"on": "valve_on", "off": "valve_off"}
 cronUser = 'pukes'
 
 if __name__ == "__main__":
-	userCronTab = CronTab(cronUser)
+	userCronTab = CronTab(user=cronUser)
 	if prod == "prod":
 	    device = findall('ttyUSB[0-9]*', check_output(["ls","/dev"]))[0]
 	    s = Serial('/dev/' + device, 9600)
