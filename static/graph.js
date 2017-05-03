@@ -49,7 +49,7 @@ function drawGraph(titleName, container, unit, apiMethod) {
   };
 
   updateChart(100);
-  // setInterval(function(){updateChart()}, updateInterval);
+  setInterval(function(){updateChart()}, updateInterval);
 }
 
 var rainStatusIcons = {"Rain": "wi wi-rain",
