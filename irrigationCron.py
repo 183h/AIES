@@ -8,10 +8,10 @@ s = Serial('/dev/' + device, 9600)
 
 command='valve_on'
 s.write(command.encode())
-status = s.readline().decode('ascii').strip()
+#status = s.readline().decode('ascii').strip()
 
 sleep(5)
 
 command='valve_off'
 s.write(command.encode())
-status = s.readline().decode('ascii').strip()
+#status = s.readline().decode('ascii').strip()
