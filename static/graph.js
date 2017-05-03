@@ -59,7 +59,6 @@ var rainStatusIcons = {"Rain": "wi wi-rain",
 function getRainStatus(rainStatusApi){
   var status = null;
   status = apiCall(rainStatusApi, false);
-  console.log("statusRain", status);
   $("#rainStatus").text(status.data);
   $("#rainStatusIcon").attr("class", rainStatusIcons[status.data]);
 }
@@ -67,7 +66,6 @@ function getRainStatus(rainStatusApi){
 function setInitialValveState(valveStatusApi){
   var valveStatus = null;
   valveStatus = apiCall(valveStatusApi, false);
-  console.log("statusValve", valveStatus);
   if (valveStatus.data[0] == 0){
     $("#buttonValve").attr("class", "btn btn-danger");
     $("#buttonValve").text(valveStatus.data[1]);
@@ -90,6 +88,11 @@ function turnValve(status){
     $("#buttonValve").text("ON");
     $("#dropdownValve").attr("class", "btn btn-success dropdown-toggle");
   }
+}
+
+function updateCronTable(){
+  response = apiCall('cronTable', false);
+  $("#crons").html(response);
 }
 
 urlRoot = "http://127.0.0.1:5000/";

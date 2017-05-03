@@ -18,6 +18,7 @@ var apiValve = {"prod": "getValveStatus","test": "getValveStatusTest"};
 
 window.onload = function () {
   setInitialValveState(apiValve["{{prod}}"]);
+  updateCronTable();
 
   setTimeout(function(){
       drawGraph("Humidity", "humidity", "%", apiHum["{{prod}}"]);
@@ -69,7 +70,7 @@ window.onload = function () {
     </div>
     <div class="col-sm-6" style="">
       <div class="well" style="margin-bottom: 15px">
-        <div id="crons" style="height: 320px; width: 100%;"></div>
+        <div id="crons" class="continer" style="height: 320px; width: 100%;"></div>
       </div>
     </div>
   </div>
