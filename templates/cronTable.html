@@ -1,6 +1,7 @@
 <table class="table table-striped">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Day</th>
         <th>Hour</th>
       </tr>
@@ -8,7 +9,8 @@
     <tbody>
       {% for cron in cronList %}
       <tr>
-        <td>{{cron.day}}</td>
+        <td>{{cron.id}}</td>
+        <td>{{cron.dow}}</td>
         <td>{{cron.hour}}</td>
       </tr>
       {% endfor %}

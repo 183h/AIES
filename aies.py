@@ -4,6 +4,7 @@ from serial import Serial
 from subprocess import check_output
 from re import findall
 from sys import argv
+from crontab import CronTab
 app = Flask(__name__)
 
 @app.route('/')
@@ -95,12 +96,31 @@ def setValve(status):
 	except Exception, e:
 		return(str(e))
 
+@app.route('/cronTable')
+def cronTable():
+	try:
+		cronList = []
+		for key, cron in enumerate(userCronTab):
+			cronList.append({'id': key, 'dow': cron.dow,'hour': cron.hour})
+		return render_template("cronTable.html", cronList=cronList)
+	except Exception, e:
+		return(str(e))
+
+@app.route('/addCron')
+def addCron():
+	try:
+		pass
+	except Exception, e:
+		return(str(e))
+
 prod = "prod" if argv[1] == "prod" else "test"
 weatherState = {0: "Rain", 1: "High humidity / Light rain", 2: "Drought"}
 valveStates = {0: "OFF", 1: "ON"}
 valveCommands = {"on": "valve_on", "off": "valve_off"}
+cronUser = 'pukes'
 
 if __name__ == "__main__":
+	userCronTab = CronTab(cronUser)
 	if prod == "prod":
 	    device = findall('ttyUSB[0-9]*', check_output(["ls","/dev"]))[0]
 	    s = Serial('/dev/' + device, 9600)
